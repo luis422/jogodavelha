@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1635605954 source:d:\documentos\faculdade\codigos\c_c++\2021\2021-10-21 entregar 2021-11-11\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<stdbool.h>
+	"arvoreJogoDaVelha.h"
+
+1635606202 d:\documentos\faculdade\codigos\c_c++\2021\2021-10-21 entregar 2021-11-11\arvorejogodavelha.h
+	<stdio.h>
+	<stdlib.h>
+
