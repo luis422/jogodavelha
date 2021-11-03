@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <conio.h>
 #include <stdlib.h>
 
 struct no{
@@ -8,6 +9,26 @@ struct no{
 
 struct no* raiz = NULL;
 
+void jogadaRandom(char caractere, char tabuleiro[3][3]){
+
+    int linha, coluna;
+    do{
+
+        linha = rand() % 3;
+        coluna = rand() % 3;
+
+    }while(tabuleiro[linha][coluna] != ' ');
+
+    //faz a jogada aleatória
+    tabuleiro[linha][coluna] = caractere;
+
+
+};
+
+void IA(char caractere, char tabuleiro[3][3]){
+
+
+}
 
 //pede para o jogador digitar
 void jogar(char caractere, char nome[100], char tabuleiro[3][3]){

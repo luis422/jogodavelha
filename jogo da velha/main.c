@@ -8,7 +8,8 @@ int main(int argc, char *argv[]) {
     setlocale(LC_ALL, "Portuguese");
 
     //variáveis
-    int vez = 2, op;
+    int vez = 2, op, contRand = 1;
+    raiz = (struct no*)malloc(sizeof(struct no));
     char tabuleiro[3][3] = {' ',' ',' ',' ',' ',' ',' ',' ',' '},
          nome1[100],
          nome2[100];
@@ -36,9 +37,43 @@ int main(int argc, char *argv[]) {
             //se a vez for ímpar, jogador 2
             }else{
 
-                jogar('O', nome2, tabuleiro);
+                //jogada aleatória
+                if(contRand <= 2)
+                    jogadaRandom('O', tabuleiro);
+
+                else
+                    IA('O', tabuleiro);
+
+
+                contRand = contRand+1;
 
             }
+
+
+
+
+
+            //copiando matriz para a raiz
+            //raiz->tab = tabuleiro;
+
+            for(int i=0; i<3; i++)
+                for(int j=0; j<3; j++)
+                    raiz->tab[i][j] = tabuleiro[i][j];
+
+            for(int i=0; i<3; i++){
+                printf("\n");
+                for(int j=0; j<3; j++){
+                    printf("  %c.",raiz->tab[i][j]);
+                }
+            }
+
+
+
+
+
+
+
+
 
             //atualiza a vez dos jogadores
             vez++;

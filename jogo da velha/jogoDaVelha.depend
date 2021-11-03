@@ -10,3 +10,15 @@
 	<stdio.h>
 	<stdlib.h>
 
+1635970548 source:c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<stdbool.h>
+	"arvoreJogoDaVelha.h"
+
+1635969279 c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\arvorejogodavelha.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+
