@@ -10,7 +10,7 @@ O projeto ainda está em andamento, confira as funcionalidades:
 
 - [x] Verifica se alguém ganhou e se deu velha
 - [x] Jogar com 2 players, um contra o outro
-- [ ] BOT jogando contra um jogador
+- [~] BOT jogando contra um jogador(aleatoriamente nas duas primeiras jogadas)
 - [ ] Algoritmo minimax no BOT
 - [ ] Interface gráfica
 
