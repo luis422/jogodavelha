@@ -18,10 +18,10 @@ O projeto ainda está em andamento, confira as funcionalidades:
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/luis422">
-        <img src="https://avatars.githubusercontent.com/u/56276522" width="100px;" alt="Foto do Luis Gustavo no GitHub"/><br>
+      <a href="https://github.com/FernandoRO07">
+        <img src="https://avatars.githubusercontent.com/u/93232893" width="100px;" alt="Foto de Fernando no GitHub"/><br>
         <sub>
-          <b>Luis Gustavo</b>
+          <b>Fernando</b>
         </sub>
       </a>
     </td>
@@ -34,10 +34,10 @@ O projeto ainda está em andamento, confira as funcionalidades:
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/FernandoRO07">
-        <img src="https://avatars.githubusercontent.com/u/93232893" width="100px;" alt="Foto de Fernando no GitHub"/><br>
+      <a href="https://github.com/luis422">
+        <img src="https://avatars.githubusercontent.com/u/56276522" width="100px;" alt="Foto do Luis Gustavo no GitHub"/><br>
         <sub>
-          <b>Fernando</b>
+          <b>Luis Gustavo</b>
         </sub>
       </a>
     </td>
