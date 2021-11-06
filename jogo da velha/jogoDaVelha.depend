@@ -1,24 +1,26 @@
 # depslib dependency file v1.0
-1635605954 source:d:\documentos\faculdade\codigos\c_c++\2021\2021-10-21 entregar 2021-11-11\main.c
+1636154774 source:c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<stdbool.h>
 	"arvoreJogoDaVelha.h"
 
-1635606202 d:\documentos\faculdade\codigos\c_c++\2021\2021-10-21 entregar 2021-11-11\arvorejogodavelha.h
-	<stdio.h>
-	<stdlib.h>
-
-1635970548 source:c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\main.c
-	<stdio.h>
-	<stdlib.h>
-	<locale.h>
-	<stdbool.h>
-	"arvoreJogoDaVelha.h"
-
-1635969279 c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\arvorejogodavelha.h
+1636154735 c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\arvorejogodavelha.h
 	<stdio.h>
 	<conio.h>
 	<stdlib.h>
+
+1636228305 source:d:\Área de trabalho\jogo da velha\jogodavelha\jogo da velha\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<stdbool.h>
+	"arvoreJogoDaVelha.h"
+
+1636229002 d:\Área de trabalho\jogo da velha\jogodavelha\jogo da velha\arvorejogodavelha.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<time.h>
 
