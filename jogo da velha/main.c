@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
             }
         }
         //resetando variável vez para começar uma nova rodada
-vez = 3/*2*/;
+        vez = 2;
         contRand = 1;
 
         //limpa a tela a cada nova rodada
@@ -37,24 +37,11 @@ vez = 3/*2*/;
         fgets(nome1, 100, stdin);
         //printf("Digite o nome do jogador 2(O): ");
         //fgets(nome2, 100, stdin);
-//tirar depois
-char tab[3][3] = {'X','O',' ','X','X',' ','O',' ',' '};
-for(int i=0; i<3; i++){
- for(int j=0; j<3; j++){
-  tabuleiro[i][j] = tab[i][j];
- }
-}
+
         mostrarJogo(tabuleiro);
 
         //loop para jogadas
         do{
-//tirar depois
-char tab[3][3] = {'X','O',' ','X','X',' ','O',' ',' '};
-for(int i=0; i<3; i++){
- for(int j=0; j<3; j++){
-  tabuleiro[i][j] = tab[i][j];
- }
-}
             //se a vez for par, jogador 1
             if(vez%2==0){
                 jogar('X', nome1, tabuleiro);
