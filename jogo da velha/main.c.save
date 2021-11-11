@@ -27,6 +27,7 @@ int main(int argc, char *argv[]) {
         }
         //resetando variável vez para começar uma nova rodada
         vez = 2;
+        contRand = 1;
 
         //limpa a tela a cada nova rodada
         system("cls || clear");
@@ -50,6 +51,7 @@ int main(int argc, char *argv[]) {
 
             //se a vez for ímpar, jogador 2
             }else{
+                printf("Vez da IA");
 
                 //jogada aleatória
                 if(contRand <= 2)
@@ -65,8 +67,6 @@ int main(int argc, char *argv[]) {
                 for(int j=0; j<3; j++)
                     raiz->tab[i][j] = tabuleiro[i][j];
 
-
-            mostrarJogo(raiz->tab);
 
             //atualiza a vez dos jogadores
             vez++;

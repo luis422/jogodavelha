@@ -1,26 +1,29 @@
 # depslib dependency file v1.0
-1636154774 source:c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\main.c
+1636560754 source:d:\햞ea de trabalho\jogodavelha\jogo da velha\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<stdbool.h>
 	"arvoreJogoDaVelha.h"
 
-1636154735 c:\users\luisg\desktop\jogo da velha\jogodavelha\jogo da velha\arvorejogodavelha.h
+1636571013 d:\햞ea de trabalho\jogodavelha\jogo da velha\arvorejogodavelha.h
+	<stdlib.h>
 	<stdio.h>
 	<conio.h>
-	<stdlib.h>
+	<math.h>
+	<time.h>
 
-1636228305 source:d:\햞ea de trabalho\jogo da velha\jogodavelha\jogo da velha\main.c
+1636600782 source:c:\users\luisg\desktop\jogodavelha\jogo da velha\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<stdbool.h>
 	"arvoreJogoDaVelha.h"
 
-1636229002 d:\햞ea de trabalho\jogo da velha\jogodavelha\jogo da velha\arvorejogodavelha.h
+1636600746 c:\users\luisg\desktop\jogodavelha\jogo da velha\arvorejogodavelha.h
+	<stdlib.h>
 	<stdio.h>
 	<conio.h>
-	<stdlib.h>
+	<math.h>
 	<time.h>
 

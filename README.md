@@ -9,8 +9,12 @@
 O projeto ainda está em andamento, confira as funcionalidades:
 
 - [x] Verifica se alguém ganhou e se deu velha
-- [x] IA jogando contra um jogador(aleatoriamente nas duas primeiras jogadas)
-- [ ] Algoritmo minimax na IA
+- [X] Algoritmo minimax na IA
+- [X] Criar árvore de possibilidades 
+- [X] Calcular heurística de cada nó até a folha
+- [X] Somar heuristica até os nós pais
+- [ ] Decidir qual é a melhor jogada da IA
+- [ ] Fazer a jogada da IA
 - [ ] Interface gráfica
 
 ## 👨‍💻 Desenvolvedores
