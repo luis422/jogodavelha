@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
@@ -5,15 +6,21 @@
 #include <time.h>
 
 //configs
-#define JOGADAS_ALEATORIAS      1
-#define logIA                   true
+#define JOGADAS_ALEATORIAS      0
 
 struct noIA{
+
+    //tabuleiro
 	char tab[3][3];
-	struct noIA* filhos[9];//n˙mero m·ximo de filhos
+
+    //n√≥s filhos
+	struct noIA* filhos[9];//n√∫mero filhos
+
+    //valor da heuristica
 	int valor;
 };
 
+//raiz da √°rvore
 struct noIA* raizIA = NULL;
 
 //mostra o tabuleiro do jogo
@@ -24,7 +31,7 @@ void mostrarJogo(char t[3][3]){
 	for(int i=0; i<3; i++){
 		printf("  %d   %c | %c | %c\n", i, t[i][0], t[i][1], t[i][2]);
 
-		//formataÁ„o do texto na tela
+		//formata√ß√£o do texto na tela
 		if(i!=2){
             printf("     ---|---|---\n");
         }
@@ -32,11 +39,8 @@ void mostrarJogo(char t[3][3]){
     printf("\n");
 }
 
-//faz uma jogada aleatÛria
+//faz uma jogada aleat√≥ria
 void jogadaRandom(char caractere, char t[3][3]){
-
-if(logIA){
-printf("Jogada aleatÛria\n");}
 
     int linha, coluna;
     do{
@@ -46,7 +50,7 @@ printf("Jogada aleatÛria\n");}
 
     }while(t[linha][coluna] != ' ');
 
-    //faz a jogada aleatÛria
+    //faz a jogada aleat√≥ria
     t[linha][coluna] = caractere;
 
 
@@ -64,6 +68,7 @@ bool deuVelha(char t[3][3]){
 
 }
 
+//verifica se o jogador ganhou
 bool marcouPonto(char c, char t[3][3]){
     if( (t[0][0] == t[0][1] && t[0][0] == t[0][2] && t[0][0] == c)||
         (t[0][0] == t[1][1] && t[0][0] == t[2][2] && t[0][0] == c)||
@@ -79,21 +84,21 @@ bool marcouPonto(char c, char t[3][3]){
     }
 }
 
-void jogar(char caractere, char nome[100], char t[3][3]){
+void vezDoPlayer(char caractere, char nome[100], char t[3][3]){
     int  linha, coluna;
-    printf("Digite a posiÁ„o da jogada(ex: 1 1). Vez de: %s", nome);
+    printf("Digite a posi√ß√£o da jogada(linha coluna). Vez de: %s ", nome);
     scanf("%d %d", &linha, &coluna);
 
     if(t[linha][coluna] == ' '){
         t[linha][coluna] = caractere;
     }else{
-        printf("Essa posiÁ„o j· est· ocupada!\n");
-        jogar(caractere, nome, t);
+        printf("Essa posi√ß√£o j√° est√° ocupada!\n");
+        vezDoPlayer(caractere, nome, t);
     }
 
 }
 
-//Executa uma verificaÁ„o para saber se o jogo acabou e se h· um vencedor
+//Executa um teste para saber se o jogo acabou e se tem algum vencedor
 bool finalDoJogo(char t[3][3], char nome1[100], char nome2[100]){
 
     printf("\n");
@@ -115,15 +120,15 @@ bool finalDoJogo(char t[3][3], char nome1[100], char nome2[100]){
         return true;
     }
 
-    //o jogo ainda n„o acabou
+    //o jogo ainda esta em andamento
     return false;
 }
 
-void minimax(char meuCaracter, char oponenteCaracter, struct noIA** raizIA){
+void calcHeuristico(char meuCaracter, char oponenteCaracter, struct noIA** raizIA){
 
     bool folha = true;
 
-    //1 - avaliar se È folha
+    //1 - avaliar se √© folha
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
             if((*raizIA)->tab[i][j] == ' '){
@@ -132,7 +137,7 @@ void minimax(char meuCaracter, char oponenteCaracter, struct noIA** raizIA){
             }
         }
         if(folha){
-            //calcular a heuristica
+            //calcular a heur√≠stica
 
             //avaliar se a IA ganhou, perdeu ou deu velha
             if(marcouPonto(meuCaracter,(*raizIA)->tab)){
@@ -152,16 +157,16 @@ void minimax(char meuCaracter, char oponenteCaracter, struct noIA** raizIA){
             }
 
         }else{
-            //se n„o for folha
+            //se n√£o for folha
             (*raizIA)->valor = 0;
         }
     }
 
-    //se o jogo ainda n„o acabou
-    //fazer chamada recursiva com for, e if para ver se os filhos s„o nulos ou n„o
+    //se o jogo ainda n√£o acabou
+    //fazer chamada recursiva com for, e if para ver se os filhos s√£o nulos ou n√£o
     for(int k=0; k<9; k++)
         if((*raizIA)->filhos[k]!=NULL){
-            minimax(meuCaracter, oponenteCaracter, &(*raizIA)->filhos[k]);
+            calcHeuristico(meuCaracter, oponenteCaracter, &(*raizIA)->filhos[k]);
         }
 
 }
@@ -170,18 +175,19 @@ void criarArvore(char meuCaracter, char oponenteCaracter, struct noIA** raizIA, 
 
     if((*raizIA)!=NULL){
 
-        //rodando todas as posiÁıes do tabuleiro pai
+        //percorrendo todas as posi√ß√µes do tabuleiro pai
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
 
-                //1 - para cada espaÁo em branco no tabuleiro do pai...
+                //1 - para cada espa√ßo em branco no tabuleiro do pai...
                 if((*raizIA)->tab[i][j] == ' '){
 
-                    //2 - alocar/criar um novo filho
+                    //alocar/criar um novo n√≥ filho
                     (*raizIA)->filhos[(2*i)+j+i] = (struct noIA*) malloc(sizeof(struct noIA));
+                    //definir valor do n√≥ filho = 0
                     (*raizIA)->filhos[(2*i)+j+i]->valor = 0;
 
-                    //3 - copiar tabuleiro do pai nos filhos
+                    //copiar tabuleiro do pai nos filhos
                     for(int k=0; k<3; k++){
                         for(int l=0; l<3; l++){
                             (*raizIA)->filhos[(2*i)+j+i]->tab[k][l] = (*raizIA)->tab[k][l];
@@ -189,7 +195,7 @@ void criarArvore(char meuCaracter, char oponenteCaracter, struct noIA** raizIA, 
                     }
 
 
-                    //4 - fazer a jogada no tabuleiro do filho, de acordo com a rodada
+                    //fazer a jogada no tabuleiro do filho, de acordo com a rodada
                     if(minhaVez){
                         (*raizIA)->filhos[(2*i)+j+i]->tab[i][j] = meuCaracter;
                     }else{
@@ -201,15 +207,15 @@ void criarArvore(char meuCaracter, char oponenteCaracter, struct noIA** raizIA, 
                        !marcouPonto(meuCaracter, (*raizIA)->tab) &&
                        !deuVelha((*raizIA)->tab)){
 
-                        //5 - repetir o processo para cada filho criado
+                        //chamar fun√ß√£o recursivamente para cada n√≥ filho criado
                         criarArvore(meuCaracter, oponenteCaracter, &(*raizIA)->filhos[(2*i)+j+i], !minhaVez);
 
                        }else{
-                            //1.2 - sen„o o filho ser· nulo naquela posiÁ„o
+                            //sen√£o o filho ser√° nulo naquela posi√ß√£o
                             (*raizIA)->filhos[(2*i)+j+i] = NULL;
                         }
                 }else{
-                    //1.2 - sen„o tiver espaÁo em branco, o filho ser· nulo naquela posiÁ„o
+                    //sen√£o tiver espa√ßo em branco, o filho ser√° nulo naquela posi√ß√£o
                     (*raizIA)->filhos[(2*i)+j+i] = NULL;
                 }
             }
@@ -221,7 +227,7 @@ void mostrarArvore(struct noIA** raizIA){
 
     if((*raizIA)!=NULL){
 
-        printf("\nmostrarArvore() heurÌstico[%d]\n tabuleiro:",(*raizIA)->valor);
+        printf("\nmostrarArvore() heur√≠stico[%d]\n tabuleiro:",(*raizIA)->valor);
 
         for(int k=0; k<3; k++){
             printf("\n    %c. %c. %c.", (*raizIA)->tab[k][0], (*raizIA)->tab[k][1], (*raizIA)->tab[k][2]);
@@ -234,103 +240,202 @@ void mostrarArvore(struct noIA** raizIA){
     }
 }
 
-int encontraFolhaArvore(struct noIA** raizIAlocal){
+int encontraFolhaArvore(struct noIA** no){
 
-    if((*raizIAlocal) != NULL){
+    if((*no) != NULL){
 
         bool folha = true;
-        //teste se È folha
+        //testar se os n√≥s filhos s√£o folhas
         for(int k=0; k<9; k++){
-            if((*raizIAlocal)->filhos[k]!=NULL){
+            if((*no)->filhos[k]!=NULL){
                 folha = false;
                 break;
             }
         }
+
+        //se for folha, retornar o valor do n√≥
         if(folha){
-            return (*raizIAlocal)->valor;
+            return (*no)->valor;
+
+        //sen√£o, chamar recursivamente para os n√≥s filhos do n√≥ atual
         }else{
             for(int k=0; k<9; k++){
-                if((*raizIAlocal) != NULL){
-                    (*raizIAlocal)->valor = (*raizIAlocal)->valor + encontraFolhaArvore(&(*raizIAlocal)->filhos[k]);
+                if((*no) != NULL){
+                    (*no)->valor += encontraFolhaArvore(&(*no)->filhos[k]);
                 }
             }
-            return (*raizIAlocal)->valor;
+            return (*no)->valor;
         }
 	}else{
         return 0;
 	}
 }
 
-//algoritmo respons·vel por 'pensar' qual È a melhor jogada a seguir
-void IA(char meuCaracter, char oponenteCaracter, char t[3][3]){
+//fun√ß√£o para vezDoPlayer de acordo com a heur√≠stica
+int melhorJogada(struct noIA** no, bool somarHeuristica){
 
-    //alocando ·rvore usada pela IA
-    raizIA = (struct noIA*)malloc(sizeof(struct noIA));
     int melhorFilho = -1;
     int maiorHeuristica = -9999999;
 
-    //criando cÛpia do tabuleiro principal, para a ‡rvore de simulaÁ„o da IA
-    for(int i=0; i<3; i++){
-        for(int j=0; j<3; j++){
-            raizIA->tab[i][j] = t[i][j];
+    //percorrer todos os n√≥s filhos do n√≥ raiz
+    for(int i=0; i<9; i++){
+        
+        //se o n√≥ filho n√£o for nulo
+        if((*no)->filhos[i] != NULL){
+            
+            if(somarHeuristica){
+                (*no)->filhos[i]->valor += encontraFolhaArvore(&(*no)->filhos[i]);
+            }
+            
+            //decidir a melhor jogada
+            //se for o primeiro n√≥ filho, ou se a heur√≠stica do n√≥ atual for maior que a heur√≠stica do melhor n√≥ filho atual
+            if((*no)->filhos[i]->valor > maiorHeuristica){
+                maiorHeuristica = (*no)->filhos[i]->valor;
+                melhorFilho = i;
+            }
         }
     }
 
-    //Passo 1 - criar a ·rvore de possibilidades
-    criarArvore(meuCaracter, oponenteCaracter, &raizIA, true);
+    //retornar a posi√ß√£o do melhor n√≥ filho
+    return melhorFilho;
+}
 
-    //Passo 2 - calcular minimax
-    minimax(meuCaracter, oponenteCaracter, &raizIA);
-    //se IA ganhar logo na prÛxima jogada, È ela que queremos...
+//fun√ß√£o para exclus√£o de n√≥s da √°rvore
+void excluirArvore(struct noIA** no){
+
+    //se o n√≥ n√£o for nulo
+    if((*no) != NULL){
+
+        //percorrer todos os n√≥s filhos do n√≥ raiz
+        for(int k=0; k<9; k++){
+
+            excluirArvore(&(*no)->filhos[k]);
+
+        }
+        
+        //liberar mem√≥ria do n√≥
+        free(*no);
+        //free((*no));
+            
+	}
+}
+
+//fun√ß√£o respons√°vel por decidir qual a melhor jogada a seguir
+void IA(char meuCaracter, char oponenteCaracter, char t[3][3]){
+    
+    int melhorFilho = -1;
+    struct noIA* auxFree = NULL;
+
+    if(raizIA==NULL){
+        //alocando a √°rvore usada pela IA
+        raizIA = (struct noIA*)malloc(sizeof(struct noIA));
+
+        //passando tabuleiro principal para o tabuleiro da √°rvore
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                raizIA->tab[i][j] = t[i][j];
+            }
+        }
+
+        //criar a √°rvore
+        criarArvore(meuCaracter, oponenteCaracter, &raizIA, true);
+
+        //calcular valor heur√≠stico de cada n√≥ da √°rvore
+        calcHeuristico(meuCaracter, oponenteCaracter, &raizIA);
+
+        //somar heuristica at√© os filhos da raiz
+        melhorFilho = melhorJogada(&raizIA, true);
+        
+    }else{
+
+        //guardo a raiz atual para libearar mem√≥ria depois
+        auxFree = raizIA;
+
+        //atualizar jogada do player na √°rvore...
+        bool achouJogadaAtual;
+        int c;
+
+        //percorrer todos os n√≥s filhos do n√≥ raiz
+        for(c=0; c<9; c++){
+
+            //se o n√≥ filho n√£o for nulo
+            if(raizIA->filhos[c]){
+
+                //se o n√≥ filho atual for igual ao tabuleiro atual
+                achouJogadaAtual = true;
+
+                //comparar tabuleiro atual com tabuleiro do n√≥ filho
+                for(int i=0; i<3; i++){
+                    for(int j=0; j<3; j++){
+
+                        //se o n√≥ filho atual for diferente do tabuleiro atual
+                        if(raizIA->filhos[c]->tab[i][j] != t[i][j]){
+
+                            //n√£o encontrou jogada atual
+                            achouJogadaAtual = false;
+                        }
+                    }
+                }
+                
+                if(achouJogadaAtual){
+                    break;
+                }
+            }
+        }
+
+        if(achouJogadaAtual){
+            
+            //excluir os n√≥s da √°rvore, exceto o n√≥ melhor jogada
+            for(int i=0; i<9; i++){
+                if(auxFree->filhos[i] != NULL){
+                    if(i!=c){
+                        excluirArvore(&auxFree->filhos[i]);
+                    }
+                }
+            }
+			
+			//atualiza a raiz da √°rvore
+            raizIA = raizIA->filhos[c];
+        }else{
+            printf("Erro fatal!");
+        }
+
+        melhorFilho = melhorJogada(&raizIA, false);
+
+
+    }
+
+    //se IA ganhar logo na pr√≥xima jogada
     for(int i=0; i<9; i++){
         if(raizIA->filhos[i] != NULL){
 
             if(marcouPonto(meuCaracter, raizIA->filhos[i]->tab)){
                 raizIA->filhos[i]->valor += 1000;
-            }
-        }
-    }
-
-    //para cada filho n„o nulo da raiz, somar heurÌsticas
-    for(int i=0; i<9; i++){
-        if(raizIA->filhos[i] != NULL){
-            raizIA->filhos[i]->valor += encontraFolhaArvore(&raizIA->filhos[i]);
-
-            //Passo 3 - decidir a melhor jogada
-            if(raizIA->filhos[i]->valor > maiorHeuristica){
-                maiorHeuristica = raizIA->filhos[i]->valor;
                 melhorFilho = i;
             }
-
         }
     }
-    printf("\nmelhor filho para jogar = %d", melhorFilho);
-    printf("\nvalor h do filho        = %d", maiorHeuristica);
+
+    
+
+    //printf("\nmelhor filho para vezDoPlayer = %d", melhorFilho);
 
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
 
-            //ver onde est· a jogada do filho
+            //ver onde est√° a jogada que a IA deve fazer
             if(raizIA->filhos[melhorFilho]->tab[i][j] != t[i][j]){
 
-                //Passo 4 - jogar
+                //marcar a jogada
                 t[i][j] = raizIA->filhos[melhorFilho]->tab[i][j];
-                i=j=3;
+                //i=j=3;
             }
-
         }
     }
 
-
-    //t[linha][coluna];
-
-    //resetar a ·rvore da IA
-    free(raizIA);
+    raizIA = raizIA->filhos[melhorFilho];
+    
 }
-
-
-
-
 
 
 

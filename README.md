@@ -13,8 +13,9 @@ O projeto ainda está em andamento, confira as funcionalidades:
 - [X] Criar árvore de possibilidades 
 - [X] Calcular heurística de cada nó até a folha
 - [X] Somar heuristica até os nós pais
-- [ ] Decidir qual é a melhor jogada da IA
-- [ ] Fazer a jogada da IA
+- [X] Decidir qual é a melhor jogada da IA
+- [X] Fazer a jogada da IA
+- [X] Excluir as partes da árvore que não serão mais utilizadas
 - [ ] Interface gráfica
 
 ## 👨‍💻 Desenvolvedores
